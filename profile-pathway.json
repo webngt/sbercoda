@@ -1,0 +1,49 @@
+{
+    "scenarios": [
+        {
+            "title": "Prometheus Client",
+            "description": "Prometheus Client",
+            "id": "prometheus-client"
+        },
+        {
+            "title": "Kube",
+            "description": "Kube",
+            "id": "kube"
+        },
+        {
+            "title": "Kube and pod demo",
+            "description": "Kube pod",
+            "id": "kube-pod"
+        },
+        {
+            "title": "Kube components",
+            "description": "Kube components",
+            "id": "kube-components"
+        },
+        {
+            "title": "Deployment demo",
+            "description": "Deployment demo",
+            "id": "kube-deployment"
+        },
+        {
+            "title": "Service demo",
+            "description": "Service demo",
+            "id": "kube-service"
+        },
+        {
+            "title": "Probes demo",
+            "description": "Probes demo",
+            "id": "kube-probes"
+        },
+        {
+            "title": "Ingress demo",
+            "description": "Ingress demo",
+            "id": "kube-ingress"
+        },
+        {
+            "title": "Configuration demo",
+            "description": "Configuration demo",
+            "id": "kube-configuration"
+        }
+    ]
+  }

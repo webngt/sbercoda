@@ -1,0 +1,47 @@
+{
+    "pathwayTitle": "Kubernetes ingress",
+    "title": "Ingress",
+    "description": "Ingress",
+    "difficulty": "beginner",
+    "time": "30 minutes",
+    "details": {
+        "steps": [
+            {
+                "title": "Запускаем кластер Kubernetes",
+                "text": "step0.md"
+            },
+            {
+                "title": "Запускаем ингресс контроллер",
+                "text": "step1.md"
+            },
+            {
+                "title": "Создаем и работаем с объектом Ingress",
+                "text": "step2.md"
+            }
+        ],
+        "intro": {
+            "text": "intro.md"
+        },
+        "assets": {
+            "host01": [
+                {"file": "launch_k8s.sh", "target": "/root", "chmod": "+x"}
+            ]
+        },
+        "finish": {
+            "text": "finish.md"
+        }
+    },
+    "files": [
+        "deployment.yaml",
+        "service.yaml",
+        "ingress.yaml"
+    ],
+    "environment": {
+        "uilayout": "editor-terminal",
+        "uisettings": "yaml",
+        "uimessage1": "\u001b[32mYour Interactive Bash Terminal.\u001b[m\r\n"
+    },
+    "backend": {
+        "imageid": "kubernetes-cluster-running:1.18"
+    }
+}

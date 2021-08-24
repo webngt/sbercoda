@@ -1,0 +1,53 @@
+{
+    "pathwayTitle": "Kubernetes configuration",
+    "title": "Конфигурирование приложений в Kubernetes",
+    "description": "Конфигурирование приложений в Kubernetes",
+    "difficulty": "beginner",
+    "time": "10 minutes",
+    "details": {
+        "steps": [
+            {
+                "title": "Запускаем кластер Kubernetes",
+                "text": "step0.md"
+            },
+            {
+                "title": "Переменные окружения",
+                "text": "step1.md"
+            },
+            {
+                "title": "Создание ConfigMap и Secret",
+                "text": "step2.md"
+            },
+            {
+                "title": "Использование ConfigMap и Secret",
+                "text": "step3.md"
+            }
+        ],
+        "intro": {
+            "text": "intro.md"
+        },
+        "finish": {
+            "text": "finish.md"
+        },
+        "assets": {
+            "host01": [
+                {"file": "launch_k8s.sh", "target": "/root", "chmod": "+x"}
+            ]
+        }
+    },
+    "files": [
+        "deployment.yaml",
+        "service.yaml",
+        "configmap.yaml",
+        "secret.yaml",
+        "mountconfig.yaml"
+    ],
+    "environment": {
+        "uilayout": "editor-terminal",
+        "uisettings": "yaml",
+        "uimessage1": "\u001b[32mYour Interactive Bash Terminal.\u001b[m\r\n"
+    },
+    "backend": {
+        "imageid": "kubernetes-cluster-running:1.18"
+    }
+}

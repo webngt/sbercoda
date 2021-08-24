@@ -1,0 +1,43 @@
+{
+    "pathwayTitle": "Kubernetes probes",
+    "title": "Механизм проверок в Kubernetes",
+    "description": "Механизм проверок в Kubernetes",
+    "difficulty": "beginner",
+    "time": "10 minutes",
+    "details": {
+        "steps": [
+            {
+                "title": "Запускаем кластер Kubernetes",
+                "text": "step0.md"
+            },
+            {
+                "title": "Запускаем приложение и работаем с проверками",
+                "text": "step1.md"
+            }
+
+        ],
+        "intro": {
+            "text": "intro.md"
+        },
+        "finish": {
+            "text": "finish.md"
+        },
+        "assets": {
+            "host01": [
+                {"file": "launch_k8s.sh", "target": "/root", "chmod": "+x"}
+            ]
+        }
+    },
+    "files": [
+        "deployment.yaml",
+        "service.yaml"
+    ],
+    "environment": {
+        "uilayout": "editor-terminal",
+        "uisettings": "yaml",
+        "uimessage1": "\u001b[32mYour Interactive Bash Terminal.\u001b[m\r\n"
+    },
+    "backend": {
+        "imageid": "kubernetes-cluster-running:1.18"
+    }
+}

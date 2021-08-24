@@ -1,0 +1,57 @@
+{
+    "pathwayTitle": "Kubernetes components",
+    "title": "Основные компоненты Kubernetes",
+    "description": "Основные компоненты Kubernetes",
+    "difficulty": "beginner",
+    "time": "40 minutes",
+    "details": {
+        "steps": [
+            {
+                "title": "Основные компоненты Kubernetes",
+                "text": "step0-1.md"
+            },
+            {
+                "title": "API Server",
+                "text": "step0-2.md"
+            },
+            {
+                "title": "Запускаем рабочую нагрузку",
+                "text": "step0-3.md"
+            },
+            {
+                "title": "Объекты и ресурсы Kubernetes",
+                "text": "step1.md"
+            },
+            {
+                "title": "Kubectl",
+                "text": "step2.md"
+            },
+            {
+                "title": "Создание рабочей нагрузки через Kubectl",
+                "text": "step3.md"
+            }
+        ],
+        "intro": {
+            "text": "intro.md"
+        },
+        "finish": {
+            "text": "finish.md"
+        },
+        "assets": {
+            "host01": [
+                {"file": "hello-service.json", "target": "/root", "chmod": "+x"},
+                {"file": "launch_k8s.sh", "target": "/root", "chmod": "+x"},
+                {"file": "proxy_api_server_to_localhost_8080.sh", "target": "/root", "chmod": "+x"}
+            ]
+        }
+    },
+    "environment": {
+        "uilayout": "terminal",
+        "uisettings": "yaml",
+        "uimessage1": "\u001b[32mYour Interactive Bash Terminal.\u001b[m\r\n",
+        "uimessage2": "\u001b[32mYour Interactive Bash Terminal.\u001b[m\r\n"
+    },
+    "backend": {
+        "imageid": "kubernetes-cluster-running:1.18"
+    }
+}

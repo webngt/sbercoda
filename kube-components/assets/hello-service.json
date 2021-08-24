@@ -1,0 +1,15 @@
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+        "name": "hello-demo"
+    },
+    "spec": {
+        "containers": [
+            {
+                "name": "hello-demo",
+                "image": "schetinnikov/hello-app:v1"
+            }
+        ]
+    }
+}
