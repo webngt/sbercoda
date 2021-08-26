@@ -5,13 +5,14 @@
 Обновим тип сервиса в файле service.yaml: 
 
 <pre class="file" data-filename="./service.yaml" data-target="insert" data-marker="  type: NodePort">
-  type: LoadBalancer</pre>
+type: LoadBalancer</pre>
 
 Применяем его 
 
 `kubectl apply -f service.yaml`{{execute T1}}
 
-Смотрим настройки сервиса во второй вкладке. 
+Смотрим настройки сервиса.
+`kubectl get svc`{{execute T1}}
 
 ```
 NAME                      TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE

@@ -3,13 +3,14 @@
 Обновим  файл **service.yaml** с описанием **сервиса**:
 
 <pre class="file" data-filename="./service.yaml" data-target="insert" data-marker="  type: ClusterIP">
-  type: NodePort</pre>
+type: NodePort</pre>
 
 Применим манифест: 
 
 `kubectl apply -f service.yaml`{{execute T1}}
 
-Во второй вкладе можем увидеть обновленный статус **сервиса**:
+Можем увидеть обновленный статус **сервиса**:
+`kubectl get svc`{{execute T1}}
 
 ```
 NAME                      TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
@@ -42,20 +43,9 @@ service/hello-service     NodePort    10.108.237.251   <none>        9000:32296/
 
 При обращении на этот *порт* на любой *ноде* кластера **Kubernetes**, у нас будут происходить обращения к нашему *сервису*:
 
-На рабочей *ноде*:
-
-`curl http://node01:$NODE_PORT/`{{execute T1}}
+`curl http://$HOSTNAME:$NODE_PORT/`{{execute T1}}
 
 ```
-curl http://node01:$NODE_PORT/
+curl http://$HOSTNAME:$NODE_PORT/
 Hello world from hello-deployment-d67cff5cc-q6xcw!
-```
-
-На *управляющей*:
-
-`curl http://controlplane:$NODE_PORT/`{{execute T1}}
-
-```
-curl http://controlplane:$NODE_PORT/
-Hello world from hello-deployment-d67cff5cc-c7hpw!
 ```

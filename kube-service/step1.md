@@ -46,7 +46,11 @@ spec:
 
 `kubectl apply -f deployment.yaml -f service.yaml`{{execute T1}}
 
-Во втором терминале можем наблюдать за тем, как создаются *поды*. 
+Можем наблюдать за тем, как создаются *поды*. 
+
+`kubectl get pod,deploy,svc`{{execute T1}}
+
+
 
 ```
 NAME                                   READY   STATUS              RESTARTS   AGE
@@ -143,7 +147,7 @@ Events:            <none>
 Обновим количество *реплик* и убедимся, что **сервис** `hello-service` подхватит новый *под*:
 
 <pre class="file" data-filename="./deployment.yaml" data-target="insert" data-marker="  replicas: 2">
-  replicas: 3</pre>
+replicas: 3</pre>
 
 Применяем манифест:
 
