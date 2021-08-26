@@ -28,14 +28,18 @@ spec:
 
 `kubectl apply -f deployment.yaml`{{execute T1}}
 
-Во второй вкладке можем наблюдать за тем, как создаются поды. 
+`watch kubectl get pods -l app=hello-demo`{{execute T1}}
+
 Дождемся, пока деплоймент раскатится - т.е. когда все поды станут в статусе **Running**
+
 
 ```
 NAME                               READY   STATUS    RESTARTS   AGE
 hello-deployment-d67cff5cc-hrfh8   1/1     Running   0          35s
 hello-deployment-d67cff5cc-hsf6g   1/1     Running   0          35s
 ```
+
+После выходим из watch с помощью сочетания клавиш **Ctrl**-**C**
 
 ## Состояние деплоймента
 

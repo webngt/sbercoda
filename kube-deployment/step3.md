@@ -23,7 +23,9 @@ hello-deployment-d67cff5cc-hsf6g   1/1     Running   0          6m16s   app=hell
 hello-deployment-d67cff5cc-qbghj   1/1     Running   0          30s     app=hello-demo,pod-template-hash=d67cff5cc
 ```
 
-Во второй вкладке можем наблюдать за тем, как под без метки запущен, а деплоймент создал еще одну новую поду.
+`kubectl get pods -l app=hello-demo`{{execute T1}}
+
+Можем наблюдать за тем, как под без метки запущен, а деплоймент создал еще одну новую поду.
 
 ```
 NAME                               READY   STATUS    RESTARTS   AGE
@@ -37,7 +39,9 @@ hello-deployment-d67cff5cc-qbghj   1/1     Running   0          12s
 
 `kubectl label pod $POD_NAME app=hello-demo`{{execute T1}}
 
-Во второй вкладке можем наблюдать за тем, деплоймент удалил один из подов.
+`kubectl get pods -l app=hello-demo`{{execute T1}}
+
+Можем наблюдать за тем, деплоймент удалил один из подов:
 ```
 NAME                               READY   STATUS        RESTARTS   AGE
 hello-deployment-d67cff5cc-2vpkg   1/1     Running       0          2m54s

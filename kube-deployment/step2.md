@@ -1,7 +1,8 @@
 Давайте поменяем количество реплик в манифесте:
 
 <pre class="file" data-filename="./deployment.yaml" data-target="insert" data-marker="  replicas: 2">
-  replicas: 3</pre>
+replicas: 3</pre>
+
 
 И применим его.
 
@@ -15,7 +16,9 @@
 
 Например, `kubectl scale deploy/hello-deployment --replicas=2`{{execute T1}}
 
-Во второй вкладке можем наблюдать за тем, как сначала удаляется *пода*:
+`watch kubectl get pods -l app=hello-demo`{{execute T1}}
+
+Можем наблюдать за тем, как сначала удаляется *пода*:
 
 ```
 NAME                               READY   STATUS        RESTARTS   AGE
@@ -24,9 +27,13 @@ hello-deployment-d67cff5cc-hrfh8   1/1     Running       0          95s
 hello-deployment-d67cff5cc-hsf6g   1/1     Running       0          95s
 ```
 
+Дождемся, пока под удалится, и потом выйдем из команды с помощью сочетания клавиш **Ctrl-C**
+
 А после команды:
 
 `kubectl scale deploy/hello-deployment --replicas=3`{{execute T1}}
+
+`watch kubectl get pods -l app=hello-demo`{{execute T1}}
 
 создается еще один *под*:
 ```
@@ -35,6 +42,8 @@ hello-deployment-d67cff5cc-8zbpd   1/1     Running   0          4s
 hello-deployment-d67cff5cc-hrfh8   1/1     Running   0          2m55s
 hello-deployment-d67cff5cc-hsf6g   1/1     Running   0          2m55s
 ```
+
+Дождемся, пока под запустится, и потом выйдем из команды с помощью сочетания клавиш **Ctrl-C**
 
 
 
@@ -58,7 +67,9 @@ hello-deployment-d67cff5cc-hsf6g   1/1     Running   0          2m55s
 
 `kubectl delete pod $POD_NAME`{{execute T1}}
 
-Во второй вкладке можем наблюдать за тем, как создаcтся еще одна новая пода.
+`watch kubectl get pods -l app=hello-demo`{{execute T1}}
+
+Можем наблюдать за тем, как создаcтся еще одна новая пода.
 
 ```
 NAME                               READY   STATUS        RESTARTS   AGE
@@ -68,4 +79,5 @@ hello-deployment-d67cff5cc-hrfh8   1/1     Running       0          4m12s
 hello-deployment-d67cff5cc-hsf6g   1/1     Running       0          4m12s
 ```
 
-## 
+Дождемся, пока под удалится, и потом выйдем из команды с помощью сочетания клавиш **Ctrl-C**
+

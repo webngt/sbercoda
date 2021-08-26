@@ -9,7 +9,9 @@
 
 `kubectl apply -f deployment.yaml`{{execute T1}}
 
-Во второй вкладке можем наблюдать за тем, как одновременно создаются и удаляются *поды*.
+`watch kubectl get pods -l app=hello-demo`{{execute T1}}
+
+Можем наблюдать за тем, как одновременно создаются и удаляются *поды*.
 
 ```
 
@@ -22,6 +24,8 @@ hello-deployment-d67cff5cc-hrfh8    1/1     Terminating   0          7m34s
 hello-deployment-d67cff5cc-hsf6g    1/1     Terminating   0          7m34s
 ```
 
+После из watch с помощью сочетания клавиш **Ctrl**-**C**
+
 Также мы можем откатить *деплоймент*. Для этого достаточно вернуть версию назад.
 
 <pre class="file" data-filename="./deployment.yaml" data-target="insert" data-marker="          image: schetinnikov/hello-app:v2">
@@ -31,7 +35,9 @@ hello-deployment-d67cff5cc-hsf6g    1/1     Terminating   0          7m34s
 
 `kubectl apply -f deployment.yaml`{{execute T1}}
 
-Во второй вкладке можем наблюдать за тем, как одновременно создаются и удаляются поды. 
+`watch kubectl get pods -l app=hello-demo`{{execute T1}}
+
+Можем наблюдать за тем, как одновременно создаются и удаляются поды. 
 
 ```
 NAME                                READY   STATUS              RESTARTS   AGE
@@ -43,7 +49,9 @@ hello-deployment-d67cff5cc-swdqh    1/1     Running             0          5s
 hello-deployment-d67cff5cc-vbkl7    0/1     ContainerCreating   0          1s
 ```
 
-Дождемся пока *деплоймент* полностью откатится.
+Дождемся пока *деплоймент* полностью откатится. После выходим из watch с помощью сочетания клавиш **Ctrl**-**C**
+
+
 
 ## Обновление деплоймента с помощью kubectl set image и kubectl rollout undo
 
