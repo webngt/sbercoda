@@ -8,12 +8,12 @@ image: schetinnikov/hello-app:v2</pre>
 И применим манифест
 
 `kubectl apply -f deployment.yaml`{{execute T1}}
-`watch kubectl get pods -l app=hello-demo`{{execute T1}}
 
 Можем наблюдать за тем, как одновременно создаются и удаляются *поды*.
+`kubectl get pods -l app=hello-demo`{{execute T1}}
+
 
 ```
-
 NAME                                READY   STATUS        RESTARTS   AGE
 hello-deployment-6949477748-2b9wj   1/1     Running       0          6s
 hello-deployment-6949477748-8hl8n   1/1     Running       0          10s
@@ -22,8 +22,6 @@ hello-deployment-d67cff5cc-2vpkg    1/1     Terminating   0          3m28s
 hello-deployment-d67cff5cc-hrfh8    1/1     Terminating   0          7m34s
 hello-deployment-d67cff5cc-hsf6g    1/1     Terminating   0          7m34s
 ```
-
-После из watch с помощью сочетания клавиш `Ctrl-C`{{execute ctrl-seq}}
 
 Также мы можем откатить *деплоймент*. Для этого достаточно вернуть версию назад.
 
@@ -34,9 +32,10 @@ image: schetinnikov/hello-app:v1</pre>
 
 `kubectl apply -f deployment.yaml`{{execute T1}}
 
-`watch kubectl get pods -l app=hello-demo`{{execute T1}}
 
-Можем наблюдать за тем, как одновременно создаются и удаляются поды. 
+Можем наблюдать за тем, как одновременно создаются и удаляются поды.
+
+`kubectl get pods -l app=hello-demo`{{execute T1}}
 
 ```
 NAME                                READY   STATUS              RESTARTS   AGE
@@ -48,9 +47,6 @@ hello-deployment-d67cff5cc-swdqh    1/1     Running             0          5s
 hello-deployment-d67cff5cc-vbkl7    0/1     ContainerCreating   0          1s
 ```
 
-Дождемся пока *деплоймент* полностью откатится. После выходим из watch с помощью сочетания клавиш `Ctrl-C`{{execute ctrl-seq}}
-
-
 
 ## Обновление деплоймента с помощью kubectl set image и kubectl rollout undo
 
@@ -60,9 +56,14 @@ hello-deployment-d67cff5cc-vbkl7    0/1     ContainerCreating   0          1s
 
 `kubectl set image deploy/hello-deployment hello-demo=schetinnikov/hello-app:v2`{{execute T1}}
 
+`kubectl get pods -l app=hello-demo`{{execute T1}}
+
 А чтобы откатить **kubect rollout undo**:
 
 `kubectl rollout undo deploy/hello-deployment`{{execute T1}}
+
+`kubectl get pods -l app=hello-demo`{{execute T1}}
+
 
 ## Стратегия обновления Recreate
 
@@ -81,9 +82,10 @@ image: schetinnikov/hello-app:v2</pre>
 Применяем манифест. 
 
 `kubectl apply -f deployment.yaml`{{execute T1}}
-`watch kubectl get pods -l app=hello-demo`{{execute T1}}
 
 Можем наблюдать за тем, как одновременно сначала все *поды* находятся в статусе **Terminating**:
+`kubectl get pods -l app=hello-demo`{{execute T1}}
+
 ```
 NAME                                READY   STATUS        RESTARTS   AGE
 hello-deployment-6949477748-6w8g4   1/1     Terminating   0          6m39s
@@ -98,7 +100,7 @@ hello-deployment-d67cff5cc-5cq94   1/1     Running   0          5s
 hello-deployment-d67cff5cc-7p2cv   1/1     Running   0          5s
 hello-deployment-d67cff5cc-z54rr   1/1     Running   0          5s
 ```
-Дождемся пока *деплоймент* раскатится. После выходим из watch с помощью сочетания клавиш `Ctrl-C`{{execute ctrl-seq}}
+Дождемся пока *деплоймент* раскатится.
 
 
 ## Удаление деплоймента
@@ -109,6 +111,4 @@ hello-deployment-d67cff5cc-z54rr   1/1     Running   0          5s
 
 Вместе с удалением *деплоймента* будут удалены все *поды*.
 
-`watch kubectl get pods -l app=hello-demo`{{execute T1}}
-
-Выходим из watch с помощью сочетания клавиш `Ctrl-C`{{execute ctrl-seq}}
+`kubectl get pods -l app=hello-demo`{{execute T1}}

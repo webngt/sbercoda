@@ -8,7 +8,11 @@ replicas: 3</pre>
 
 `kubectl apply -f deployment.yaml`{{execute T1}}
 
-Во второй вкладке можем наблюдать за тем, как создаcтся еще одна *пода*.
+Должна появится еще одна пода:
+
+`kubectl get pods`{{execute T1}}
+
+
 
 ## Масштабирование деплоймента с помощью kubectl scale 
 
@@ -16,9 +20,11 @@ replicas: 3</pre>
 
 Например, `kubectl scale deploy/hello-deployment --replicas=2`{{execute T1}}
 
-`watch kubectl get pods -l app=hello-demo`{{execute T1}}
+
 
 Можем наблюдать за тем, как сначала удаляется *пода*:
+
+`kubectl get pods`{{execute T1}}
 
 ```
 NAME                               READY   STATUS        RESTARTS   AGE
@@ -27,13 +33,11 @@ hello-deployment-d67cff5cc-hrfh8   1/1     Running       0          95s
 hello-deployment-d67cff5cc-hsf6g   1/1     Running       0          95s
 ```
 
-После выходим из watch с помощью сочетания клавиш `Ctrl-C`{{execute ctrl-seq}}
-
 А после команды:
 
 `kubectl scale deploy/hello-deployment --replicas=3`{{execute T1}}
 
-`watch kubectl get pods -l app=hello-demo`{{execute T1}}
+`kubectl get pods`{{execute T1}}
 
 создается еще один *под*:
 ```
@@ -43,7 +47,7 @@ hello-deployment-d67cff5cc-hrfh8   1/1     Running   0          2m55s
 hello-deployment-d67cff5cc-hsf6g   1/1     Running   0          2m55s
 ```
 
-После выходим из watch с помощью сочетания клавиш `Ctrl-C`{{execute ctrl-seq}}
+
 
 ## Удалим один из подов деплоймента
 
@@ -65,9 +69,9 @@ hello-deployment-d67cff5cc-hsf6g   1/1     Running   0          2m55s
 
 `kubectl delete pod $POD_NAME`{{execute T1}}
 
-`watch kubectl get pods -l app=hello-demo`{{execute T1}}
-
 Можем наблюдать за тем, как создаcтся еще одна новая пода.
+
+`kubectl get pods`{{execute T1}}
 
 ```
 NAME                               READY   STATUS        RESTARTS   AGE
@@ -76,6 +80,3 @@ hello-deployment-d67cff5cc-8zbpd   1/1     Terminating   0          81s
 hello-deployment-d67cff5cc-hrfh8   1/1     Running       0          4m12s
 hello-deployment-d67cff5cc-hsf6g   1/1     Running       0          4m12s
 ```
-
-После выходим из watch с помощью сочетания клавиш `Ctrl-C`{{execute ctrl-seq}}
-
