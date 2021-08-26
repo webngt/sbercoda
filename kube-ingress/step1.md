@@ -1,18 +1,14 @@
 Поскольку у нас нет **ингресс-контроллера** встроенного, его необходимо поставить. 
 
-Ставить будем в системный **namespace** `kube-system` с помощью утилиты **helm**:
+Ставить будем в системный **namespace** `kube-system` с помощью команды:
 
-`helm repo add bitnami https://charts.bitnami.com/bitnami`{{execute T1}}
+`kubectl apply -f nginx-ingress.yaml`{{execute T1}}
 
-`helm install nginx bitnami/nginx-ingress-controller -n kube-system`{{execute T1}}
+Запустим команду, которая из всех *подов* `kube-system`, отфильтрует *под* **ингресс** **контроллера** по меткам `app.kubernetes.io/name` и `app.kubernetes.io/component`. 
 
-Запустим в цикле команду, которая из всех *подов* `kube-system`, отфильтрует *под* **ингресс** **контроллера** по меткам `app.kubernetes.io/name` и `app.kubernetes.io/component`. 
-
-`watch kubectl get -n kube-system pod -l app.kubernetes.io/name=nginx-ingress-controller -l app.kubernetes.io/component=controller`{{execute T1}}
+`kubectl get -n kube-system pod -l app.kubernetes.io/name=nginx-ingress-controller -l app.kubernetes.io/component=controller`{{execute T1}}
 
 Дождемся пока *под* **ингресс** **контроллера** не окажется в статусе **Running**. 
-
-И выйдем из цикла сочетанием клавиш **Ctrl-C**.
 
 **Ингресс-контроллер** в данном случае - это **nginx** и **контроллер**, который читает изменения сущности **Ingress**. **Nginx** внутри **Kubernetes** запущен, как обычное приложение, и для него также есть **Service**. Тип сервиса **LoadBalancer**, т.е. доступ к **nginx** будет извне кластера по внешнему **IP** адресу.  
 

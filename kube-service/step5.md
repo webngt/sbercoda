@@ -15,18 +15,7 @@
 Hello world from hello-deployment-d67cff5cc-c47w5!/ # 
 ```
 
-Также можем обратиться по доменному имени `{имя сервиса}.{имя неймспейса}`, в нашем случае это будет `hello-service.myapp`
-
-`wget -qO- http://hello-service.myapp:9000/`{{execute T1}}
-
-И получим ответ от одного из *подов* приложения:
-
-```
-/ # wget -qO- http://hello-service.myapp:9000/
-Hello world from hello-deployment-d67cff5cc-c7hpw!/ # 
-```
-
-А также по полному доменному имени:
+Также можем обратиться по полному доменному имени:
 
 `wget -qO- http://hello-service.myapp.svc.cluster.local:9000/`{{execute T1}}
 
