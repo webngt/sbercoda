@@ -3,12 +3,11 @@
 Теперь давайте посмотрим, как работают *стратегии обновления*. В текущем манифесте используется **RollingUpdate**. Давайте обновим версию в манифесте на **v2**
 
 <pre class="file" data-filename="./deployment.yaml" data-target="insert" data-marker="          image: schetinnikov/hello-app:v1">
-          image: schetinnikov/hello-app:v2</pre>
+image: schetinnikov/hello-app:v2</pre>
 
 И применим манифест
 
 `kubectl apply -f deployment.yaml`{{execute T1}}
-
 `watch kubectl get pods -l app=hello-demo`{{execute T1}}
 
 Можем наблюдать за тем, как одновременно создаются и удаляются *поды*.
@@ -24,12 +23,12 @@ hello-deployment-d67cff5cc-hrfh8    1/1     Terminating   0          7m34s
 hello-deployment-d67cff5cc-hsf6g    1/1     Terminating   0          7m34s
 ```
 
-После из watch с помощью сочетания клавиш **Ctrl**-**C**
+После из watch с помощью сочетания клавиш `Ctrl-C`{{execute ctrl-seq}}
 
 Также мы можем откатить *деплоймент*. Для этого достаточно вернуть версию назад.
 
 <pre class="file" data-filename="./deployment.yaml" data-target="insert" data-marker="          image: schetinnikov/hello-app:v2">
-          image: schetinnikov/hello-app:v1</pre>
+image: schetinnikov/hello-app:v1</pre>
 
 И применить манифест 
 
@@ -49,7 +48,7 @@ hello-deployment-d67cff5cc-swdqh    1/1     Running             0          5s
 hello-deployment-d67cff5cc-vbkl7    0/1     ContainerCreating   0          1s
 ```
 
-Дождемся пока *деплоймент* полностью откатится. После выходим из watch с помощью сочетания клавиш **Ctrl**-**C**
+Дождемся пока *деплоймент* полностью откатится. После выходим из watch с помощью сочетания клавиш `Ctrl-C`{{execute ctrl-seq}}
 
 
 
@@ -72,18 +71,19 @@ hello-deployment-d67cff5cc-vbkl7    0/1     ContainerCreating   0          1s
 Правим манифест
 
 <pre class="file" data-filename="./deployment.yaml" data-target="insert" data-marker="    type: RollingUpdate">
-    type: Recreate</pre>
+type: Recreate</pre>
 
 и обновляем версию 
 
 <pre class="file" data-filename="./deployment.yaml" data-target="insert" data-marker="          image: schetinnikov/hello-app:v1">
-          image: schetinnikov/hello-app:v2</pre>
+image: schetinnikov/hello-app:v2</pre>
 
 Применяем манифест. 
 
 `kubectl apply -f deployment.yaml`{{execute T1}}
+`watch kubectl get pods -l app=hello-demo`{{execute T1}}
 
-Во второй вкладке можем наблюдать за тем, как одновременно сначала все *поды* находятся в статусе **Terminating**:
+Можем наблюдать за тем, как одновременно сначала все *поды* находятся в статусе **Terminating**:
 ```
 NAME                                READY   STATUS        RESTARTS   AGE
 hello-deployment-6949477748-6w8g4   1/1     Terminating   0          6m39s
@@ -98,6 +98,8 @@ hello-deployment-d67cff5cc-5cq94   1/1     Running   0          5s
 hello-deployment-d67cff5cc-7p2cv   1/1     Running   0          5s
 hello-deployment-d67cff5cc-z54rr   1/1     Running   0          5s
 ```
+Дождемся пока *деплоймент* раскатится. После выходим из watch с помощью сочетания клавиш `Ctrl-C`{{execute ctrl-seq}}
+
 
 ## Удаление деплоймента
 
@@ -107,3 +109,6 @@ hello-deployment-d67cff5cc-z54rr   1/1     Running   0          5s
 
 Вместе с удалением *деплоймента* будут удалены все *поды*.
 
+`watch kubectl get pods -l app=hello-demo`{{execute T1}}
+
+Выходим из watch с помощью сочетания клавиш `Ctrl-C`{{execute ctrl-seq}}

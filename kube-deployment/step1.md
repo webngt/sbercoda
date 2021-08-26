@@ -39,7 +39,7 @@ hello-deployment-d67cff5cc-hrfh8   1/1     Running   0          35s
 hello-deployment-d67cff5cc-hsf6g   1/1     Running   0          35s
 ```
 
-После выходим из watch с помощью сочетания клавиш **Ctrl**-**C**
+После выходим из watch с помощью сочетания клавиш `Ctrl-C`{{execute ctrl-seq}}
 
 ## Состояние деплоймента
 

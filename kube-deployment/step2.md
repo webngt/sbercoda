@@ -27,7 +27,7 @@ hello-deployment-d67cff5cc-hrfh8   1/1     Running       0          95s
 hello-deployment-d67cff5cc-hsf6g   1/1     Running       0          95s
 ```
 
-Дождемся, пока под удалится, и потом выйдем из команды с помощью сочетания клавиш **Ctrl-C**
+После выходим из watch с помощью сочетания клавиш `Ctrl-C`{{execute ctrl-seq}}
 
 А после команды:
 
@@ -43,9 +43,7 @@ hello-deployment-d67cff5cc-hrfh8   1/1     Running   0          2m55s
 hello-deployment-d67cff5cc-hsf6g   1/1     Running   0          2m55s
 ```
 
-Дождемся, пока под запустится, и потом выйдем из команды с помощью сочетания клавиш **Ctrl-C**
-
-
+После выходим из watch с помощью сочетания клавиш `Ctrl-C`{{execute ctrl-seq}}
 
 ## Удалим один из подов деплоймента
 
@@ -79,5 +77,5 @@ hello-deployment-d67cff5cc-hrfh8   1/1     Running       0          4m12s
 hello-deployment-d67cff5cc-hsf6g   1/1     Running       0          4m12s
 ```
 
-Дождемся, пока под удалится, и потом выйдем из команды с помощью сочетания клавиш **Ctrl-C**
+После выходим из watch с помощью сочетания клавиш `Ctrl-C`{{execute ctrl-seq}}
 
