@@ -28,7 +28,11 @@
 
 `curl 127.0.0.1:8080/api/v1/namespaces/default/pods/hello-demo | jq`{{execute T1}}
 
-B третьем терминале мы увидим событии о том, что контейнер был остановлен **kubelet**-ом
+Запустим команду
+
+`curl -s 127.0.0.1:8080/api/v1/events  | jq '.items[] | {message: .message, component: .source.component} | select(.message | index("hello"))'`{{execute T1}}
+
+Увидим событии о том, что контейнер был остановлен **kubelet**-ом
 
 ```
 {
