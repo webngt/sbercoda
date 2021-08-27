@@ -1,16 +1,6 @@
 {
     "scenarios": [
         {
-            "title": "Prometheus Client",
-            "description": "Prometheus Client",
-            "id": "prometheus-client"
-        },
-        {
-            "title": "Kube",
-            "description": "Kube",
-            "id": "kube"
-        },
-        {
             "title": "Kube and pod demo",
             "description": "Kube pod",
             "id": "kube-pod"
