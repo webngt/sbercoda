@@ -44,39 +44,32 @@ spec:
 
 `kubectl apply -f deployment.yaml -f service.yaml`{{execute T1}}
 
-Во втором терминале можем наблюдать за тем, как создаются *поды*. 
+Можем наблюдать за тем, как создаются *поды*. 
+
+`kubectl get pods -l app=hello-demo`{{execute T1}}
+
 Дождемся, пока *деплоймент* раскатится - т.е. когда все *поды* станут в статусе **Running**
 
 ## Обновление на новую версию
 
 Давайте теперь посмотрим, как для внешнего сервиса будет выглядеть процесс обновления на новую версию. 
 
-Для этого перейдем в третий терминал.
-
-Сначала сохраним в переменную окружения CLUSTER_IP внутренний IP cервиса:
-
-`CLUSTER_IP=$(kubectl get service hello-service -o jsonpath="{.spec.clusterIP}")`{{execute T3}}
-
-> Если терминал не был до этого открыт, то команду нужно будет нажать 2 раза - первый раз будет открыт терминал, а во второй выполнится уже команда
-
-И теперь в бесконечном цикле начнем опрашивать наш сервис:
-
-`while true; do curl http://$CLUSTER_IP:9000/version ; echo ''; sleep .5; done`{{execute T3}}
-
-
 Обновляем версию в манифесте:
 
 <pre class="file" data-filename="./deployment.yaml" data-target="insert" data-marker="          image: schetinnikov/hello-app:v1">
-          image: schetinnikov/hello-app:v2</pre>
+image: schetinnikov/hello-app:v2</pre>
 
 Применяем манифест: 
 
 `kubectl apply -f deployment.yaml`{{execute T1}}
 
-Во втором терминале можем наблюдать за тем, как создаются поды. 
-А в третьем, как выглядит процесс раскатки. 
+И теперь в бесконечном цикле начнем опрашивать наш сервис:
 
-В третьем терминале можем наблюдать ошибки **Connection refused** во время раскатки. После окончания обновления они пропадают. Так происходит, потому что контейнер стартовал, он жив, но принимать трафик еще не готов. Для того, чтобы такого не было, необходимо настроить механизм проверок. 
+`CLUSTER_IP=$(kubectl get service hello-service -o jsonpath="{.spec.clusterIP}") ; while true; do curl http://$CLUSTER_IP:9000/version ; echo ''; sleep .5; done`{{execute T1}}
+
+Можем наблюдать ошибки **Connection refused** во время раскатки. После окончания обновления они пропадают. Так происходит, потому что контейнер стартовал, он жив, но принимать трафик еще не готов. Для того, чтобы такого не было, необходимо настроить механизм проверок.
+
+Выйти из цикла можно сочетанием клавиш **Ctrl-C**
 
 ## Откат деплоймента
 
@@ -85,7 +78,7 @@ spec:
 Возвращаем версию в **deployment.yaml**:
 
 <pre class="file" data-filename="./deployment.yaml" data-target="insert" data-marker="          image: schetinnikov/hello-app:v2">
-          image: schetinnikov/hello-app:v1</pre>
+image: schetinnikov/hello-app:v1</pre>
 
 Применим манифест: 
 
@@ -93,12 +86,15 @@ spec:
 
 Дождемся, пока деплоймент раскатится - т.е. когда все поды окажутся в статусе **Running**
 
+`kubectl get pods -l app=hello-demo`{{execute T1}}
+
+
 ## Обновление на новую версию с проверками
 
 Давайте добавим  **liveness** и **readiness** проверки:
 
 <pre class="file" data-filename="./deployment.yaml" data-target="insert" data-marker="          image: schetinnikov/hello-app:v1">
-          image: schetinnikov/hello-app:v2</pre>
+image: schetinnikov/hello-app:v2</pre>
 
 <pre class="file" data-filename="./deployment.yaml" data-target="append">
           livenessProbe:
@@ -121,5 +117,8 @@ spec:
 
 `kubectl apply -f deployment.yaml`{{execute T1}}
 
-Во втором терминале можем наблюдать за тем, как создаются *поды*. 
-А в третьем, как выглядит процесс раскатки. И там можно наблюдать отсутствие ошибок **Connection refused**. При этом также видно, что во время раскатки нам отвечают как старая, так и новая версия приложения. 
+И теперь в бесконечном цикле начнем опрашивать наш сервис.
+
+`while true; do curl http://$CLUSTER_IP:9000/version ; echo ''; sleep .5; done`{{execute T1}}
+
+Можно наблюдать отсутствие ошибок **Connection refused**. При этом также видно, что во время раскатки нам отвечают как старая, так и новая версия приложения. 
