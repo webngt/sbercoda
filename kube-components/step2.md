@@ -36,19 +36,19 @@
 
 Для того, чтобы получить только один объект в табличном виде можно использовать команду `kubectl get {название ресурса} {имя ресурса}`
 
-Например, `kubectl get node controlplane`{{execute T1}}
+Например, `kubectl get node $HOSTNAME`{{execute T1}}
 
 Также можно получить не табличное, а полноценное представление в **json** или **yaml** формате, если передать параметр `-o json` или `-o yaml`:
 
-`kubectl get nodes controlplane -o json`{{execute T1}}
+`kubectl get nodes $HOSTNAME -o json`{{execute T1}}
 
-`kubectl get nodes controlplane -o yaml`{{execute T1}}
+`kubectl get nodes $HOSTNAME -o yaml`{{execute T1}}
 
 А чтобы получить расширенное, человекочитаемое описание объекта, можно использовать команду `kubectl describe {название ресурса} {имя ресурса}`
 
 Можно запустить и посмотреть человекочитаемое описание для ноды:
 
-`kubectl describe node controlplane`{{execute T1}}
+`kubectl describe node $HOSTNAME`{{execute T1}}
 
 ### Сокращения
 
@@ -62,7 +62,7 @@
 
 `kubectl get ns`{{execute T1}}
 
-`kubectl get no controlplane`{{execute T1}}
+`kubectl get no $HOSTNAME`{{execute T1}}
 
 Существующие сокращения для ресурсов можно посмотреть в колонке `shortnames` команды `kubectl api-resources` {{execute T1}}. 
 
@@ -103,5 +103,3 @@
 `kubectl config set-context --current --namespace=kube-system`{{execute T1}}
 
 `kubectl get pod`{{execute T1}}
-
-`clear`{{execute T1}} `clear`{{execute T2}} 

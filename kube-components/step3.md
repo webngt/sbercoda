@@ -45,5 +45,3 @@
 `kubectl delete -f hello-service.json`{{execute T1}}
 
 Это будет равносильно тому запросу, который мы делали до этого в **API Server**.
-
-`clear`{{execute T1}} `clear`{{execute T2}}

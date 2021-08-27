@@ -20,11 +20,7 @@
 
 Как видим там содержится много информации, в том числе и атрибут - **status**, который отражает текущий статус *объекта*.
 
-Можно посмотреть, как эта же информация хранится в **etcd**:
 
-`docker exec -it $ETCD_DOCKER_ID etcdctl get /registry/pods/default/hello-demo  --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/peer.crt  --key /etc/kubernetes/pki/etcd/peer.key`{{execute T1}}
-
-`clear`{{execute T1}} `clear`{{execute T2}}
 
 ## Удаление объекта 
 
@@ -45,8 +41,3 @@ B третьем терминале мы увидим событии о том, 
 }
 ```
 
-А контейнер будет потушен:
-
-`docker ps | grep -v pause | grep hello`{{execute T2}}
-
-`clear`{{execute T1}} `clear`{{execute T2}}

@@ -38,16 +38,3 @@
   "component": "kubelet"
 }
 ```
-
-После этого также можем с вами увидеть, что на рабочей ноде наш сервис был запущен:
-
-`clear`{{execute T2}}
-`docker ps | grep -v pause | grep hello`{{execute T2}}
-
-А вот на управлюящей ноде контейнера нет:
-`clear`{{execute T1}}
-`docker ps | grep -v pause | grep hello`{{execute T1}}
-
-После того, как мы посмотрели на основные компоненты кластера **Kubernetes**, давайте обсудим как хранится конфигурация, и что такое объекты **Kubernetes**.
-
-`clear`{{execute T1}} `clear`{{execute T2}}
