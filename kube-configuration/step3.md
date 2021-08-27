@@ -137,11 +137,11 @@ spec:
 
 Зайдем в *поду* *деплоймента* и посмотрим, как выглядят примонтированные конфиги в третьем терминале:
 
-`kubectl exec -it deploy/hello-deployment -- /bin/bash`{{execute T3}}
+`kubectl exec -it deploy/hello-deployment -- /bin/bash`{{execute T1}}
 
 >  если терминал не был до этого открыт, то команду нужно будет нажать 2 раза - первый раз будет открыт терминал, а во второй выполнится уже команда.
 
-`ls /tmp/config`{{execute T3}}
+`ls /tmp/config`{{execute T1}}
 
 ```
 root@hello-deployment-85fbc4cd8b-c5q7h:/usr/src/app# ls /tmp/config
@@ -149,7 +149,7 @@ my.cfg  test.json
 ```
 
 
-`cat /tmp/config/test.json`{{execute T3}}
+`cat /tmp/config/test.json`{{execute T1}}
 ```
 root@hello-deployment-85fbc4cd8b-c5q7h:/usr/src/app# cat /tmp/config/test.json
 {
@@ -157,29 +157,9 @@ root@hello-deployment-85fbc4cd8b-c5q7h:/usr/src/app# cat /tmp/config/test.json
 }
 ```
 
-`cat /tmp/config/my.cfg`{{execute T3}}
+`cat /tmp/config/my.cfg`{{execute T1}}
 ```
 root@hello-deployment-85fbc4cd8b-c5q7h:/usr/src/app# cat /tmp/config/my.cfg
 foo=bar
-baz=quux
-```
-
-
-Если мы с вами изменим **ConfigMap**, то через некоторое время изменения применятся и файлы внутри *пода* изменятся:
-
-<pre class="file" data-filename="./mountconfig.yaml" data-target="insert" data-marker="    foo=bar">
-    foo=FOOBARBAZQUUX</pre>
-
-
-Применим манифест:
-
-`kubectl apply -f mountconfig.yaml`{{execute T1}}
-
-Смотрим изменения:
-
-`cat /tmp/config/my.cfg`{{execute T3}}
-```
-root@hello-deployment-85fbc4cd8b-c5q7h:/usr/src/app# cat /tmp/config/my.cfg
-foo=FOOBARBAZQUUX
 baz=quux
 ```
