@@ -67,7 +67,7 @@ hello-deployment-d67cff5cc-hsf6g   1/1     Running   0          2m55s
 
 И удалим:
 
-`kubectl delete pod $POD_NAME --wait=false` {{execute T1}}
+`kubectl delete pod $POD_NAME --wait=false`{{execute T1}}
 
 > --wait=false опция, которая позволяет не дожидаться удаления пода
 
