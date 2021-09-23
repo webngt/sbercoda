@@ -163,7 +163,7 @@ Hello world from hello-demo!
 
 Теперь давайте удалим пространство имен **myapp**. И оно приведет к удалению и всех объектов, которые в нем находятся.
 
-`kubectl delete ns myapp`{{execute T1}}
+`kubectl delete ns myapp  --wait=false`{{execute T1}}
 
 За процессом удаления можно следить с помощью команды:
 

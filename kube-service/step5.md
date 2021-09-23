@@ -26,6 +26,8 @@ Hello world from hello-deployment-d67cff5cc-c47w5!/ #
 Hello world from hello-deployment-d67cff5cc-c7hpw!/ # 
 ```
 
+Выйдем из пода с помощью сочетания клавиш **Ctrl-D**
+
 Теперь можно удалить все объекты можно с помощью команды:
 
 `kubectl delete -f service.yaml -f deployment.yaml`{{execute T1}}
