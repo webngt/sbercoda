@@ -45,7 +45,7 @@ spec:
 И создадим файл **ingress.yaml**  :
 
 <pre class="file" data-filename="./ingress.yaml" data-target="replace">
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: hello-ingress
@@ -56,9 +56,12 @@ spec:
   - http:
       paths:
         - path: /
+          pathType: Prefix
           backend:
-            serviceName: hello-service
-            servicePort: 9000
+            service:
+              name: hello-service
+              port:
+                number: 9000
 </pre>
 
 
@@ -92,21 +95,24 @@ spec:
 Обновим манифест **ингресса**: 
 
 <pre class="file" data-filename="./ingress.yaml" data-target="replace">
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: hello-ingress
   annotations:
-    kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/rewrite-target: /$2
+    kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
   - http:
       paths:
         - path: /myapp($|/)(.*)
+          pathType: Prefix
           backend:
-            serviceName: hello-service
-            servicePort: 9000
+            service:
+              name: hello-service
+              port:
+                number: 9000
 </pre>
 
 
@@ -152,8 +158,3 @@ Hello world from hello-deployment-d67cff5cc-fhcl5!
 Также мы с вами можем посмотреть, как выглядит конфигурация балансировщика **nginx**, с помощью команды:
 
 `kubectl exec deploy/nginx-nginx-ingress-controller -n kube-system -- cat /etc/nginx/nginx.conf`{{execute T1}}
-
-
-
-
-
