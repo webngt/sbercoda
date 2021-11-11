@@ -1,23 +1,21 @@
 package sbercode
 
-default error = []
-
-hasError := contains(input.out, "[ERROR]")
-hasInfo := contains(input.out, "[INFO]")
+hasError := contains(input.mvn_out, "[ERROR]")
+hasInfo := contains(input.mvn_out, "[INFO]")
 
 allow[msg] {  
   not hasError
   hasInfo
-  msg := input.out
+  msg := input.mvn_out
 }
 
 deny[msg] {  
   hasError
   hasInfo
-  msg := input.out
+  msg := input.mvn_out
 }
 
 error[msg] {
   not hasInfo  
-  msg := input.out
+  msg := input.mvn_out
 }
