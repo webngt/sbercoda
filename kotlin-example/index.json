@@ -22,9 +22,6 @@
             "text": "finish.md"
         },
         "assets": {
-            "host01": [
-                {"file": "demo.tar.gz", "target": "/root"}
-            ]
         }
     },
     "files": [],
