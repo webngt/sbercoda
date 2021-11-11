@@ -1,5 +1,5 @@
 #!/bin/sh
 
-msg=$(cd /root/Sprint-2 && mvn test)
+msg=$(cat /tmp//tmp/test.log)
 
 jq -M -c -n --arg mvn_out "$msg" '{$mvn_out}'
